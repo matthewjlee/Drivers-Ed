@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="nav_drawer">
+        <item>Lesson Timer</item>
+        <item>Past Lessons</item>
+        <item>Statistics</item>
+        <item>Settings</item>
+    </string-array>
+    <string-array name="lesson_array">
+        <item>Residential</item>
+        <item>Highway</item>
+        <item>Commercial</item>
+    </string-array>
+    <string-array name="weather_array">
+        <item>Clear</item>
+        <item>Rainy</item>
+        <item>Snow/Ice</item>
+    </string-array>
+</resources>
