@@ -51,15 +51,6 @@ public class NewLessonFragment extends Fragment {
     private boolean dayNightPressed;
     private boolean stopButtonPressed;
 
-    public NewLessonFragment() {
-        this.id = 0;
-        this.hours = 0;
-        this.date = "";
-        this.dayNight = "";
-        this.roadType = "";
-        this.weatherType = "";
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -207,8 +198,6 @@ public class NewLessonFragment extends Fragment {
             DriveLog driveLog = new DriveLog(this.id, this.hours, this.date, this.dayNight, lessonType, weatherType);
             dbAdapter.insertDriveLog(driveLog);
             ((MainActivity)getActivity()).totalHoursCounter += driveLog.getHours();
-
-            System.out.println("@@@@@@  " + driveLog.id + " " + driveLog.getWeather());
         }
     }
 

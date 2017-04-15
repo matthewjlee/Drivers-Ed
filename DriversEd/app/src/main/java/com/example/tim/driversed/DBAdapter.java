@@ -28,7 +28,7 @@ public class DBAdapter {
     public static final String LESSON_CONDITION = "lesson_condition";
 
     public static final String[] LESSON_COLS = {LESSON_ID, LESSON_HOURS,
-        LESSON_DATE, LESSON_DAYNIGHT, LESSON_TYPE, LESSON_CONDITION};
+            LESSON_DATE, LESSON_DAYNIGHT, LESSON_TYPE, LESSON_CONDITION};
 
     public static synchronized DBAdapter getInstance(Context context) {
         if (dbInstance == null) {
@@ -59,12 +59,12 @@ public class DBAdapter {
         dbVersion++;
     }
 
-    // Database update methods
+    // database update methods
+
     public long insertDriveLog(DriveLog driveLog) {
         // create a new row of values to insert
         ContentValues cvalues = new ContentValues();
         // assign values for each col
-        //cvalues.put(LESSON_ID, driveLog.id);
         cvalues.put(LESSON_HOURS, driveLog.getHours());
         cvalues.put(LESSON_DATE, driveLog.getDate());
         cvalues.put(LESSON_DAYNIGHT, driveLog.getDay());
@@ -74,7 +74,7 @@ public class DBAdapter {
         return db.insert(LESSONS_TABLE, null, cvalues);
     }
 
-    public boolean removeItem(long id) {
+    public boolean removeItem(int id) {
         return db.delete(LESSONS_TABLE, "LESSON_ID="+id, null) > 0;
     }
 
@@ -84,8 +84,7 @@ public class DBAdapter {
         return db.update(LESSONS_TABLE, cvalue, LESSON_ID +"="+id, null) > 0;
     }
 
-
-    //Database query methods
+    // database query methods
     public Cursor getAllItems() {
         return db.query(LESSONS_TABLE, LESSON_COLS, null, null, null, null, null);
     }
@@ -120,9 +119,9 @@ public class DBAdapter {
 
     private static class DBhelper extends SQLiteOpenHelper {
 
-        // SQL statement to create a new database.
+        // SQL statement to create a new database. figure out to how to properly create?
         private static final String DB_CREATE = "CREATE TABLE " + LESSONS_TABLE
-                + " (" + LESSON_ID + "_id INTEGER PRIMARY KEY AUTOINCREMENT, " + LESSON_HOURS + " TEXT, " +
+                + " (" + LESSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + LESSON_HOURS + " TEXT, " +
                 LESSON_DATE + " TEXT, " + LESSON_DAYNIGHT + " TEXT, " + LESSON_TYPE + " TEXT, " +
                 LESSON_CONDITION + " TEXT);";
 
@@ -147,4 +146,3 @@ public class DBAdapter {
     }
 
 }
-

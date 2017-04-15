@@ -42,7 +42,6 @@ public class DrivingLogFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object listItem = logListView.getItemAtPosition(position);
-                System.out.println(listItem);
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("position", driveLogItems.size() - (position));
@@ -85,7 +84,6 @@ public class DrivingLogFragment extends Fragment {
                 driveLogItems.add(0, result);  // puts in reverse order
             } while (curse.moveToNext());
         curse.close();
-
         aa.notifyDataSetChanged();
     }
 }

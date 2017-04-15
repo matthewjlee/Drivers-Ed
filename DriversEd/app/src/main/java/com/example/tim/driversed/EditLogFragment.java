@@ -133,8 +133,26 @@ public class EditLogFragment extends NewLessonFragment {
                         DriveLog current = dbAdapter.getDriveLog(id);
                         ((MainActivity)getActivity()).totalHoursCounter -= current.getHours();
                         dbAdapter.removeItem(id);
-                        dbAdapter.close();
+                        Cursor curse = dbAdapter.getAllItems();
+                        int recounter = driveLogItems.size() - 1;
 
+                        driveLogItems.clear();
+                        if (curse.moveToFirst())
+                            do {
+                                DriveLog result = new DriveLog(curse.getInt(0), curse.getFloat(1), curse.getString(2),
+                                        curse.getString(3), curse.getString(4), curse.getString(5));
+                                result.setId(recounter);
+                                driveLogItems.add(0, result);  // puts in reverse order
+                                recounter--;
+                            } while (curse.moveToNext());
+                        curse.close();
+
+                        dbAdapter.clear();
+                        for (DriveLog drivelog : driveLogItems) {
+                            dbAdapter.insertDriveLog(drivelog);
+                        }
+
+                        dbAdapter.close();
                         getActivity().getFragmentManager().popBackStack();
                     }
                 })

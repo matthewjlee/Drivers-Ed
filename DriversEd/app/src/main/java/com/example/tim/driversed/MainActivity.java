@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbAdapter = DBAdapter.getInstance(getApplicationContext());
         dbAdapter.open();
 
-        System.out.println("###############");
-
 
         //Get current saved hours
         Cursor curse = dbAdapter.getAllItems();
@@ -66,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 totalHoursCounter += lessonHour;
                 DriveLog result = new DriveLog(curse.getInt(0), curse.getFloat(1), curse.getString(2),
                         curse.getString(3), curse.getString(4), curse.getString(5));
-                System.out.println(result.id + " ---- " + result.getHours());
             } while (curse.moveToNext());
 
         //Get currently set total hours from settings

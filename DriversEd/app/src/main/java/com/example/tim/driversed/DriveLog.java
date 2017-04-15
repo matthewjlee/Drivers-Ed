@@ -47,5 +47,7 @@ public class DriveLog {
         return this.weather;
     }
 
+    public void setId(int newId) { this.id = newId; }
+
 }
 
